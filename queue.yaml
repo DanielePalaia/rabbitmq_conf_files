@@ -1,0 +1,12 @@
+#@ load("@ytt:data", "data")
+---
+queues:
+#@ for q in range(0, int(data.values.queue_n)):
+- arguments:
+    x-queue-type: "quorum"
+  auto_delete: false
+  durable: true
+  name: #@ "q" + str(q)
+  type: "quorum"
+  vhost: "/"
+#@ end
